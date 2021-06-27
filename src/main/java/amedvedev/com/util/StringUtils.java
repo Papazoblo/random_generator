@@ -14,8 +14,7 @@ public class StringUtils {
         char[] symbolArray = symbols.toCharArray();
         Random random = new Random();
         for (int i = 0; i < length; i++) {
-
-            sb.append(symbolArray[random.nextInt(symbols.length() - 1)]);
+            sb.append(symbolArray[random.nextInt(symbols.length() + 1)]);
         }
         return sb.toString();
     }
