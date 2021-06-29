@@ -11,6 +11,4 @@ public abstract class BaseGeneratorProperty<T> implements GeneratorProperty<T> {
     public Class<T> getClassType() {
         return type;
     }
-
-    ;
 }
