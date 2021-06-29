@@ -1,5 +1,6 @@
 package amedvedev.com;
 
+import amedvedev.com.builder.ByteGeneratorBuilder;
 import amedvedev.com.builder.IntegerGeneratorBuilder;
 import amedvedev.com.builder.ShortGeneratorBuilder;
 import amedvedev.com.builder.StringGeneratorBuilder;
@@ -16,5 +17,9 @@ public class GeneratorFactory {
 
     public static ShortGeneratorBuilder shorts() {
         return new ShortGeneratorBuilder();
+    }
+
+    public static ByteGeneratorBuilder bytes() {
+        return new ByteGeneratorBuilder();
     }
 }
