@@ -23,4 +23,8 @@ public class GeneratorFactory {
     public static LongGeneratorBuilder longs() {
         return new LongGeneratorBuilder();
     }
+
+    public static DoubleGeneratorBuilder doubles() {
+        return new DoubleGeneratorBuilder();
+    }
 }
