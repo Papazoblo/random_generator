@@ -1,10 +1,10 @@
 package amedvedev.com.generator;
 
-import amedvedev.com.dto.number.IntegerGeneratorProperty;
+import amedvedev.com.dto.number.DoubleGeneratorProperty;
 
 import java.math.BigDecimal;
 
-public class IntegerGenerator extends BaseNumberGenerator<Integer, IntegerGeneratorProperty> {
+public class DoubleGenerator extends BaseNumberGenerator<Double, DoubleGeneratorProperty> {
 
     @Override
     protected BigDecimal getMaxValue() {
@@ -12,12 +12,12 @@ public class IntegerGenerator extends BaseNumberGenerator<Integer, IntegerGenera
     }
 
     @Override
-    protected Integer convertNumber(Number number) {
-        return number.intValue();
+    protected Double convertNumber(Number number) {
+        return number.doubleValue();
     }
 
     @Override
-    protected Integer changeSing(boolean negative, boolean positive, Integer val) {
+    protected Double changeSing(boolean negative, boolean positive, Double val) {
         if ((negative && val >= 0) || (positive && val < 0)) {
             return -val;
         }
