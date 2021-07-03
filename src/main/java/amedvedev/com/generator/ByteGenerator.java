@@ -1,43 +1,26 @@
 package amedvedev.com.generator;
 
-import amedvedev.com.dto.ByteGeneratorProperty;
+import amedvedev.com.dto.number.ByteGeneratorProperty;
 
-import java.util.Random;
+import java.math.BigDecimal;
 
-public class ByteGenerator extends BaseGenerator<Byte, ByteGeneratorProperty> {
+public class ByteGenerator extends BaseNumberGenerator<Byte, ByteGeneratorProperty> {
 
     @Override
-    public Byte generate(ByteGeneratorProperty property) {
-        Byte result;
-        Random random = new Random();
-        Byte min = property.getMin();
-        Byte max = property.getMax();
+    protected BigDecimal getMaxValue() {
+        return BigDecimal.valueOf(Byte.MAX_VALUE);
+    }
 
-        if (max != null && min != null) {
-            if (max < min) {
-                Byte tmp = max;
-                max = min;
-                min = tmp;
-            }
-            result = (byte) (random.nextInt(max - min + 1) + min);
-        } else if (min != null) {
-            result = (byte) (random.nextInt(Byte.MAX_VALUE - min + 1) + min);
-        } else if (max != null) {
-            result = (byte) (random.nextInt(max + 1));
-        } else {
-            result = (byte) (random.nextInt());
+    @Override
+    protected Byte convertNumber(Number number) {
+        return number.byteValue();
+    }
+
+    @Override
+    protected Byte changeSing(boolean negative, boolean positive, Byte val) {
+        if ((negative && val >= 0) || (positive && val < 0)) {
+            return (byte) -val;
         }
-
-        if (property.isNegative()) {
-            if (result >= 0) {
-                result = (byte) -result;
-            }
-        } else if (property.isPositive()) {
-            if (result < 0) {
-                result = (byte) -result;
-            }
-        }
-
-        return result;
+        return val;
     }
 }

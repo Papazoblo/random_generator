@@ -1,43 +1,26 @@
 package amedvedev.com.generator;
 
-import amedvedev.com.dto.ShortGeneratorProperty;
+import amedvedev.com.dto.number.ShortGeneratorProperty;
 
-import java.util.Random;
+import java.math.BigDecimal;
 
-public class ShortGenerator extends BaseGenerator<Short, ShortGeneratorProperty> {
+public class ShortGenerator extends BaseNumberGenerator<Short, ShortGeneratorProperty> {
 
     @Override
-    public Short generate(ShortGeneratorProperty property) {
-        Short result;
-        Random random = new Random();
-        Short min = property.getMin();
-        Short max = property.getMax();
+    protected BigDecimal getMaxValue() {
+        return BigDecimal.valueOf(Short.MAX_VALUE);
+    }
 
-        if (max != null && min != null) {
-            if (max < min) {
-                Short tmp = max;
-                max = min;
-                min = tmp;
-            }
-            result = (short) (random.nextInt(max - min + 1) + min);
-        } else if (min != null) {
-            result = (short) (random.nextInt(Short.MAX_VALUE - min + 1) + min);
-        } else if (max != null) {
-            result = (short) (random.nextInt(max + 1));
-        } else {
-            result = (short) (random.nextInt());
+    @Override
+    protected Short convertNumber(Number number) {
+        return number.shortValue();
+    }
+
+    @Override
+    protected Short changeSing(boolean negative, boolean positive, Short val) {
+        if ((negative && val >= 0) || (positive && val < 0)) {
+            return (short) -val;
         }
-
-        if (property.isNegative()) {
-            if (result >= 0) {
-                result = (short) -result;
-            }
-        } else if (property.isPositive()) {
-            if (result < 0) {
-                result = (short) -result;
-            }
-        }
-
-        return result;
+        return val;
     }
 }

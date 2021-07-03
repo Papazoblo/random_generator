@@ -1,43 +1,26 @@
 package amedvedev.com.generator;
 
-import amedvedev.com.dto.LongGeneratorProperty;
+import amedvedev.com.dto.number.LongGeneratorProperty;
 
-import java.util.Random;
+import java.math.BigDecimal;
 
-public class LongGenerator extends BaseGenerator<Long, LongGeneratorProperty> {
+public class LongGenerator extends BaseNumberGenerator<Long, LongGeneratorProperty> {
 
     @Override
-    public Long generate(LongGeneratorProperty property) {
-        Long result;
-        Random random = new Random();
-        Long min = property.getMin();
-        Long max = property.getMax();
+    protected BigDecimal getMaxValue() {
+        return BigDecimal.valueOf(Integer.MAX_VALUE);
+    }
 
-        if (max != null && min != null) {
-            if (max < min) {
-                Long tmp = max;
-                max = min;
-                min = tmp;
-            }
-            result = random.nextInt((int) (max - min + 1)) + min;
-        } else if (min != null) {
-            result = random.nextInt((int) (Integer.MAX_VALUE - min + 1)) + min;
-        } else if (max != null) {
-            result = (long) random.nextInt((int) (max + 1));
-        } else {
-            result = (long) (random.nextInt());
+    @Override
+    protected Long convertNumber(Number number) {
+        return number.longValue();
+    }
+
+    @Override
+    protected Long changeSing(boolean negative, boolean positive, Long val) {
+        if ((negative && val >= 0) || (positive && val < 0)) {
+            return -val;
         }
-
-        if (property.isNegative()) {
-            if (result >= 0) {
-                result = -result;
-            }
-        } else if (property.isPositive()) {
-            if (result < 0) {
-                result = -result;
-            }
-        }
-
-        return result;
+        return val;
     }
 }

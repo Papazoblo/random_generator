@@ -1,43 +1,26 @@
 package amedvedev.com.generator;
 
-import amedvedev.com.dto.IntegerGeneratorProperty;
+import amedvedev.com.dto.number.IntegerGeneratorProperty;
 
-import java.util.Random;
+import java.math.BigDecimal;
 
-public class IntegerGenerator extends BaseGenerator<Integer, IntegerGeneratorProperty> {
+public class IntegerGenerator extends BaseNumberGenerator<Integer, IntegerGeneratorProperty> {
 
     @Override
-    public Integer generate(IntegerGeneratorProperty property) {
-        Integer result;
-        Random random = new Random();
-        Integer min = property.getMin();
-        Integer max = property.getMax();
+    protected BigDecimal getMaxValue() {
+        return BigDecimal.valueOf(Integer.MAX_VALUE);
+    }
 
-        if (max != null && min != null) {
-            if (max < min) {
-                Integer tmp = max;
-                max = min;
-                min = tmp;
-            }
-            result = random.nextInt(max - min + 1) + min;
-        } else if (min != null) {
-            result = random.nextInt(Integer.MAX_VALUE - min + 1) + min;
-        } else if (max != null) {
-            result = random.nextInt(max + 1);
-        } else {
-            result = random.nextInt();
+    @Override
+    protected Integer convertNumber(Number number) {
+        return number.intValue();
+    }
+
+    @Override
+    protected Integer changeSing(boolean negative, boolean positive, Integer val) {
+        if ((negative && val >= 0) || (positive && val < 0)) {
+            return -val;
         }
-
-        if (property.isNegative()) {
-            if (result >= 0) {
-                result = -result;
-            }
-        } else if (property.isPositive()) {
-            if (result < 0) {
-                result = -result;
-            }
-        }
-
-        return result;
+        return val;
     }
 }

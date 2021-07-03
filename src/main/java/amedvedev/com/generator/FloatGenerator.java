@@ -1,43 +1,26 @@
 package amedvedev.com.generator;
 
-import amedvedev.com.dto.FloatGeneratorProperty;
+import amedvedev.com.dto.number.FloatGeneratorProperty;
 
-import java.util.Random;
+import java.math.BigDecimal;
 
-public class FloatGenerator extends BaseGenerator<Float, FloatGeneratorProperty> {
+public class FloatGenerator extends BaseNumberGenerator<Float, FloatGeneratorProperty> {
 
     @Override
-    public Float generate(FloatGeneratorProperty property) {
-        Float result;
-        Random random = new Random();
-        Float min = property.getMin();
-        Float max = property.getMax();
+    protected BigDecimal getMaxValue() {
+        return BigDecimal.valueOf(Integer.MAX_VALUE);
+    }
 
-        if (max != null && min != null) {
-            if (max < min) {
-                Float tmp = max;
-                max = min;
-                min = tmp;
-            }
-            result = random.nextInt((int) (max - min + 1)) + min;
-        } else if (min != null) {
-            result = random.nextInt((int) (Float.MAX_VALUE - min + 1)) + min;
-        } else if (max != null) {
-            result = (float) random.nextInt((int) (max + 1));
-        } else {
-            result = (float) (random.nextInt());
+    @Override
+    protected Float convertNumber(Number number) {
+        return number.floatValue();
+    }
+
+    @Override
+    protected Float changeSing(boolean negative, boolean positive, Float val) {
+        if ((negative && val >= 0) || (positive && val < 0)) {
+            return -val;
         }
-
-        if (property.isNegative()) {
-            if (result >= 0) {
-                result = -result;
-            }
-        } else if (property.isPositive()) {
-            if (result < 0) {
-                result = -result;
-            }
-        }
-
-        return result;
+        return val;
     }
 }

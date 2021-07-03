@@ -1,6 +1,9 @@
 package amedvedev.com;
 
-import amedvedev.com.builder.*;
+import amedvedev.com.builder.StringGeneratorBuilder;
+import amedvedev.com.builder.number.*;
+import amedvedev.com.dto.number.*;
+import amedvedev.com.generator.*;
 
 public class GeneratorFactory {
 
@@ -9,26 +12,26 @@ public class GeneratorFactory {
     }
 
     public static IntegerGeneratorBuilder ints() {
-        return new IntegerGeneratorBuilder();
+        return new IntegerGeneratorBuilder(new IntegerGeneratorProperty(), new IntegerGenerator());
     }
 
     public static ShortGeneratorBuilder shorts() {
-        return new ShortGeneratorBuilder();
+        return new ShortGeneratorBuilder(new ShortGeneratorProperty(), new ShortGenerator());
     }
 
     public static ByteGeneratorBuilder bytes() {
-        return new ByteGeneratorBuilder();
+        return new ByteGeneratorBuilder(new ByteGeneratorProperty(), new ByteGenerator());
     }
 
     public static LongGeneratorBuilder longs() {
-        return new LongGeneratorBuilder();
+        return new LongGeneratorBuilder(new LongGeneratorProperty(), new LongGenerator());
     }
 
     public static DoubleGeneratorBuilder doubles() {
-        return new DoubleGeneratorBuilder();
+        return new DoubleGeneratorBuilder(new DoubleGeneratorProperty(), new DoubleGenerator());
     }
 
     public static FloatGeneratorBuilder floats() {
-        return new FloatGeneratorBuilder();
+        return new FloatGeneratorBuilder(new FloatGeneratorProperty(), new FloatGenerator());
     }
 }

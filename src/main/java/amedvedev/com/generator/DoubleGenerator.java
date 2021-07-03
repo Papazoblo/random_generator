@@ -1,43 +1,26 @@
 package amedvedev.com.generator;
 
-import amedvedev.com.dto.DoubleGeneratorProperty;
+import amedvedev.com.dto.number.DoubleGeneratorProperty;
 
-import java.util.Random;
+import java.math.BigDecimal;
 
-public class DoubleGenerator extends BaseGenerator<Double, DoubleGeneratorProperty> {
+public class DoubleGenerator extends BaseNumberGenerator<Double, DoubleGeneratorProperty> {
 
     @Override
-    public Double generate(DoubleGeneratorProperty property) {
-        Double result;
-        Random random = new Random();
-        Double min = property.getMin();
-        Double max = property.getMax();
+    protected BigDecimal getMaxValue() {
+        return BigDecimal.valueOf(Integer.MAX_VALUE);
+    }
 
-        if (max != null && min != null) {
-            if (max < min) {
-                Double tmp = max;
-                max = min;
-                min = tmp;
-            }
-            result = random.nextInt((int) (max - min + 1)) + min;
-        } else if (min != null) {
-            result = random.nextInt((int) (Double.MAX_VALUE - min + 1)) + min;
-        } else if (max != null) {
-            result = (double) random.nextInt((int) (max + 1));
-        } else {
-            result = (double) (random.nextInt());
+    @Override
+    protected Double convertNumber(Number number) {
+        return number.doubleValue();
+    }
+
+    @Override
+    protected Double changeSing(boolean negative, boolean positive, Double val) {
+        if ((negative && val >= 0) || (positive && val < 0)) {
+            return -val;
         }
-
-        if (property.isNegative()) {
-            if (result >= 0) {
-                result = -result;
-            }
-        } else if (property.isPositive()) {
-            if (result < 0) {
-                result = -result;
-            }
-        }
-
-        return result;
+        return val;
     }
 }
