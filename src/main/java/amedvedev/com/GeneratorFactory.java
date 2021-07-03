@@ -27,4 +27,8 @@ public class GeneratorFactory {
     public static DoubleGeneratorBuilder doubles() {
         return new DoubleGeneratorBuilder();
     }
+
+    public static FloatGeneratorBuilder floats() {
+        return new FloatGeneratorBuilder();
+    }
 }
