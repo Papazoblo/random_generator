@@ -2,7 +2,7 @@ package amedvedev.com.builder.number;
 
 import amedvedev.com.builder.GeneratorBuilder;
 import amedvedev.com.dto.number.BaseNumberGeneratorProperty;
-import amedvedev.com.generator.BaseNumberGenerator;
+import amedvedev.com.generator.number.BaseNumberGenerator;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Getter;

@@ -1,7 +1,7 @@
 package amedvedev.com.builder.number;
 
 import amedvedev.com.dto.number.IntegerGeneratorProperty;
-import amedvedev.com.generator.IntegerGenerator;
+import amedvedev.com.generator.number.IntegerGenerator;
 
 public class IntegerGeneratorBuilder extends BaseNumberGeneratorBuilder<Integer, IntegerGeneratorProperty> {
 

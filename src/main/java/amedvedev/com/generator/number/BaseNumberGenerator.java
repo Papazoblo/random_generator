@@ -1,6 +1,7 @@
-package amedvedev.com.generator;
+package amedvedev.com.generator.number;
 
 import amedvedev.com.dto.number.BaseNumberGeneratorProperty;
+import amedvedev.com.generator.BaseGenerator;
 
 import java.math.BigDecimal;
 import java.util.Random;

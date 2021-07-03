@@ -3,7 +3,7 @@ package amedvedev.com;
 import amedvedev.com.builder.StringGeneratorBuilder;
 import amedvedev.com.builder.number.*;
 import amedvedev.com.dto.number.*;
-import amedvedev.com.generator.*;
+import amedvedev.com.generator.number.*;
 
 public class GeneratorFactory {
 

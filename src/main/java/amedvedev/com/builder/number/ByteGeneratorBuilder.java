@@ -1,7 +1,7 @@
 package amedvedev.com.builder.number;
 
 import amedvedev.com.dto.number.ByteGeneratorProperty;
-import amedvedev.com.generator.ByteGenerator;
+import amedvedev.com.generator.number.ByteGenerator;
 
 public class ByteGeneratorBuilder extends BaseNumberGeneratorBuilder<Byte, ByteGeneratorProperty> {
 

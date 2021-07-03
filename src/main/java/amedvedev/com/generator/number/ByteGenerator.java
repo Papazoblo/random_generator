@@ -1,4 +1,4 @@
-package amedvedev.com.generator;
+package amedvedev.com.generator.number;
 
 import amedvedev.com.dto.number.ByteGeneratorProperty;
 

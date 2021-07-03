@@ -1,7 +1,7 @@
 package amedvedev.com.builder.number;
 
 import amedvedev.com.dto.number.DoubleGeneratorProperty;
-import amedvedev.com.generator.DoubleGenerator;
+import amedvedev.com.generator.number.DoubleGenerator;
 
 public class DoubleGeneratorBuilder extends BaseNumberGeneratorBuilder<Double, DoubleGeneratorProperty> {
 
